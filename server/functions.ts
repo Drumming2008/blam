@@ -3,7 +3,7 @@ import { UserSchema } from "./models/user.ts";
 async function assignTargets(): Promise<void> {
   const users = await UserSchema.find({});
 
-  const ids: string[] = users.map((u: any) => u._id.toString());
+  const ids: string[] = users.map(u => u._id.toString());
 
   function derange(arr: string[]): string[] {
     const shuffled = [...arr].sort(() => Math.random() - 0.5);
@@ -14,9 +14,7 @@ async function assignTargets(): Promise<void> {
   const shuffled = derange(ids);
 
   await Promise.all(
-    users.map((user: any, i: number) =>
-      UserSchema.findByIdAndUpdate(user._id, { target: shuffled[i] }),
-    ),
+    users.map((user, i) => UserSchema.findByIdAndUpdate(user._id, { target: shuffled[i] }))
   );
 }
 

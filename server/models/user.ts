@@ -1,6 +1,5 @@
-import mongoose from "mongoose";
+import mongoose, { type InferSchemaType, Schema } from "mongoose";
 
-const Schema = mongoose.Schema;
 const userSchema = new Schema({
   name: {
     type: String,
@@ -29,5 +28,7 @@ const userSchema = new Schema({
     default: true,
   },
 });
+
+export type User = InferSchemaType<typeof userSchema>
 
 export const UserSchema = mongoose.model("User", userSchema);

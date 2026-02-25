@@ -1,11 +1,11 @@
 import * as Express from "express";
 import { assignTargets } from "./functions";
-import { UserSchema } from "./models/user.ts";
+import { type User, UserSchema } from "./models/user.ts";
 
 const router = Express.Router();
 router.get("/users/", (req: Express.Request, res: Express.Response) => {
   UserSchema.find({})
-    .then((users: object[]) => {
+    .then((users: User[]) => {
       console.log("successfully got entire db");
       console.log(users);
       res.json(users);
@@ -17,7 +17,7 @@ router.get("/users/", (req: Express.Request, res: Express.Response) => {
 
 router.get("/leaderboard", (req: Express.Request, res: Express.Response) => {
   UserSchema.find({}, { name: 1, score: 1, _id: 0 })
-    .then((users: object[]) => {
+    .then((users: User[]) => {
       res.json(users);
     })
     .catch((err: Error) => {
@@ -27,7 +27,7 @@ router.get("/leaderboard", (req: Express.Request, res: Express.Response) => {
 
 router.get("/users/:id", (req: Express.Request, res: Express.Response) => {
   UserSchema.findById(req.params.id)
-    .then((user: object | null) => {
+    .then((user: User | null) => {
       console.log("succesfully got user");
       console.log(user);
       res.json(user);
@@ -43,7 +43,7 @@ router.post("/users/add", (req: Express.Request, res: Express.Response) => {
     email: req.body.email,
     grade: req.body.grade,
   })
-    .then((user: object) => {
+    .then((user: User) => {
       console.log(user);
       res.json(user);
     })
@@ -54,9 +54,9 @@ router.post("/users/add", (req: Express.Request, res: Express.Response) => {
 });
 
 router.put("/users/", (req: Express.Request, res: Express.Response) => {
-  const { id, update }: { id: string; update: object } = req.body;
+  const { id, update }: { id: string; update: Partial<User> } = req.body;
   UserSchema.findByIdAndUpdate(id, update, { new: true })
-    .then((user: object | null) => {
+    .then((user: User | null) => {
       if (!user) {
         return res.status(404).json({ message: "user not found" });
       }
@@ -72,7 +72,7 @@ router.put("/users/", (req: Express.Request, res: Express.Response) => {
 
 router.delete("/users/:id", (req: Express.Request, res: Express.Response) => {
   UserSchema.findByIdAndDelete(req.params.id)
-    .then((deleted: object | null) => {
+    .then((deleted: User | null) => {
       res.send(deleted);
     })
     .catch((err: Error) => {
