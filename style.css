@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Limelight&display=swap");
+
 * {
   box-sizing: border-box;
   background: transparent;
@@ -15,5 +17,29 @@
 body, html {
   height: 100%;
   background: #121214;
+  color: white;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+h1 {
+  font-family: "Limelight", sans-serif;
+  position: sticky;
+  top: 50px;
+}
+
+#leaderboard {
+  list-style: none;
+  margin-top: 25px;
+  width: 75%;
+}
+
+li {
+  border-bottom: 1px solid gray;
+  padding: 5px;
+}
