@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Limelight&display=swap");
 
+:root {
+  --bg: #121214;
+}
+
 * {
   box-sizing: border-box;
   background: transparent;
@@ -8,8 +12,12 @@
   border: none;
   outline: none;
   border-radius: 0;
-  font-size: inherit;
   color: inherit;
+}
+
+/* nobody uses the other ones */
+:not(h1, h2, h3) {
+  font-size: inherit;
 }
 
 a:any-link, button {
@@ -22,11 +30,11 @@ a:any-link, button {
 
 html, body {
   height: 100%;
-  background: #121214;
-  color: white;
 }
 
 body {
+  background: var(--bg);
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
