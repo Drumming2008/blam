@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const UserSchema = require("../models/user.ts");
-router.get("/user/", (req, res) => {
+router.get("/users/", (req, res) => {
   UserSchema.find({})
     .then((users) => {
       console.log("succesfully got entire db");
