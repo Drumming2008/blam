@@ -39,14 +39,27 @@ body {
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  font-family: system-ui, Helvetica, sans-serif;
 }
 
 h1 {
   font-family: "Limelight", sans-serif;
+}
+
+#header {
   position: sticky;
   top: 50px;
   color: greenyellow;
   font-size: 2.5em;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+#header > img {
+  height: 20px;
+
+  &:last-child { rotate: 180deg; }
 }
 
 #leaderboard {
