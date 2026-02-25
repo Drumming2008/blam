@@ -1,7 +1,8 @@
 import type * as Express from "express";
 const express = require("express");
 const router: Express.Router = express.Router();
-const UserSchema = require("../models/user.ts");
+const { assignTargets } = require("./functions");
+const UserSchema = require("./models/user.ts");
 
 router.get("/users/", (req: Express.Request, res: Express.Response) => {
   UserSchema.find({})
@@ -80,4 +81,16 @@ router.delete("/users/:id", (req: Express.Request, res: Express.Response) => {
     });
 });
 
+router.post(
+  "/assign-targets",
+  async (req: Express.Request, res: Express.Response) => {
+    try {
+      await assignTargets();
+      res.json({ message: "targets assigned" });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "error assigning targets", err });
+    }
+  },
+);
 module.exports = router;
