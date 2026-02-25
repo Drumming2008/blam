@@ -54,7 +54,7 @@ h1 {
   color: var(--accent);
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 25px;
 }
 
 #header > .spoon {
@@ -86,9 +86,72 @@ thead > tr {
 
 td, th {
   padding: 5px;
+  text-align: center;
 }
 
 th {
   color: var(--accent);
   font-size: 1.25em;
+}
+
+.rank {
+  height: 1.25em;
+  aspect-ratio: 1;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-family: "Limelight", sans-serif;
+  margin: 0 auto;
+}
+
+.rank.gold {
+  background: gold;
+
+  &::after {
+    content: "1";
+  }
+}
+
+.rank.silver {
+  background: silver;
+
+  &::after {
+    content: "2";
+  }
+}
+
+.rank.bronze {
+  background: #cd7f32;
+
+  &::after {
+    content: "3";
+  }
+}
+
+.status {
+  height: 1.25em;
+  width: 50%;
+  border-radius: 5px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status.alive {
+  border: 1px solid var(--accent);
+}
+
+.status.alive::after {
+  content: "Alive";
+}
+
+.status.dead {
+  border: 1px solid crimson;
+}
+
+.status.dead::after {
+  content: "Dead";
 }
