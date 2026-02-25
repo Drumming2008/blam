@@ -15,7 +15,7 @@ router.get("/users/", (req: Express.Request, res: Express.Response) => {
     });
 });
 
-router.get("/leaderboard/", (req: Express.Request, res: Express.Response) => {
+router.get("/leaderboard", (req: Express.Request, res: Express.Response) => {
   UserSchema.find({}, { name: 1, score: 1, _id: 0 })
     .then((users: object[]) => {
       res.json(users);

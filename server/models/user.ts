@@ -10,13 +10,23 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
-  target: String,
+  target: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   grade: {
     type: Number,
     min: 9,
     max: 12,
   },
-  score: Number,
+  score: {
+    type: Number,
+    default: 0,
+  },
+  alive: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
