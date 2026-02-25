@@ -45,21 +45,29 @@ h1 {
   font-family: "Limelight", sans-serif;
   position: sticky;
   top: 50px;
+  color: greenyellow;
+  font-size: 2.5em;
 }
 
 #leaderboard {
   margin-top: 25px;
   width: 75%;
+  border-collapse: collapse;
 }
 
-tr, thead {
+tr {
   border-bottom: 1px solid gray;
+}
+
+thead > tr {
+  border-bottom: 1px solid greenyellow;
 }
 
 td, th {
   padding: 5px;
 }
 
-:where(td, th):not(:last-child) {
-  border-right: 1px solid gray;
+th {
+  color: greenyellow;
+  font-size: 1.25em;
 }
