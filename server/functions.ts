@@ -1,4 +1,4 @@
-import { type User, UserSchema } from "./models/user.ts";
+import { UserSchema } from "./models/user.ts";
 
 export async function assignTargets(): Promise<void> {
   const users = await UserSchema.find({});

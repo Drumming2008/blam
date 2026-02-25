@@ -48,10 +48,6 @@ router.post("/users/add", (req: Express.Request, res: Express.Response) => {
       console.log(user);
       res.json(user);
     })
-    .then((user: User) => {
-      console.log(user);
-      res.json(user);
-    })
     .catch((err: Error) => {
       console.error(err);
       res.status(500).send("error creating record");
@@ -62,9 +58,9 @@ router.put(
   "/users/",
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
-    const { id, update }: { id: string; update: object } = req.body;
-    UserSchema.findByIdAndUpdate(id, update, { new: true })
-      .then((user: object | null) => {
+    const { id, update }: { id: string; update: Partial<User> } = req.body;
+    UserSchema.findByIdAndUpdate(id, update, { returnDocument: "after" })
+      .then((user: User | null) => {
         if (!user) {
           return res.status(404).json({ message: "user not found" });
         }
@@ -84,7 +80,7 @@ router.delete(
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
     UserSchema.findByIdAndDelete(req.params.id)
-      .then((deleted: object | null) => {
+      .then((deleted: User | null) => {
         res.send(deleted);
       })
       .catch((err: Error) => {
