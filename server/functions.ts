@@ -1,5 +1,4 @@
-const express = require("express");
-const UserSchema = require("./models/user.ts");
+import { UserSchema } from "./models/user.ts";
 
 async function assignTargets(): Promise<void> {
   const users = await UserSchema.find({});
@@ -20,4 +19,5 @@ async function assignTargets(): Promise<void> {
     ),
   );
 }
-module.exports = { assignTargets };
+
+export { assignTargets };

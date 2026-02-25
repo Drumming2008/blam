@@ -1,13 +1,12 @@
-import type * as Express from "express";
-const express = require("express");
-const router: Express.Router = express.Router();
-const { assignTargets } = require("./functions");
-const UserSchema = require("./models/user.ts");
+import * as Express from "express";
+import { assignTargets } from "./functions";
+import { UserSchema } from "./models/user.ts";
 
+const router = Express.Router();
 router.get("/users/", (req: Express.Request, res: Express.Response) => {
   UserSchema.find({})
     .then((users: object[]) => {
-      console.log("succesfully got entire db");
+      console.log("successfully got entire db");
       console.log(users);
       res.json(users);
     })
@@ -93,4 +92,5 @@ router.post(
     }
   },
 );
-module.exports = router;
+
+export { router };
