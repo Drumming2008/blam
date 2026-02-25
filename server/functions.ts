@@ -1,6 +1,6 @@
 import { UserSchema } from "./models/user.ts";
 
-async function assignTargets(): Promise<void> {
+export async function assignTargets(): Promise<void> {
   const users = await UserSchema.find({});
 
   const ids: string[] = users.map(u => u._id.toString());
@@ -17,5 +17,3 @@ async function assignTargets(): Promise<void> {
     users.map((user, i) => UserSchema.findByIdAndUpdate(user._id, { target: shuffled[i] }))
   );
 }
-
-export { assignTargets };

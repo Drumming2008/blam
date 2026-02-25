@@ -1,6 +1,7 @@
 import * as Express from "express";
 import { assignTargets } from "./functions";
-import { type User, UserSchema } from "./models/user.ts";
+import { UserSchema } from "./models/user.ts";
+import { requireAdmin } from "./auth";
 
 const router = Express.Router();
 router.get("/users/", (req: Express.Request, res: Express.Response) => {
@@ -43,45 +44,59 @@ router.post("/users/add", (req: Express.Request, res: Express.Response) => {
     email: req.body.email,
     grade: req.body.grade,
   })
-    .then((user: User) => {
+    .then((user: object) => {
       console.log(user);
       res.json(user);
     })
-    .catch((err: Error) => {
-      console.error(err);
-      res.status(500).send("error creating record");
-    });
-});
+      .then((user: object) => {
+        console.log(user);
+        res.json(user);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+        res.status(500).send("error creating record");
+      });
+  },
+);
 
-router.put("/users/", (req: Express.Request, res: Express.Response) => {
-  const { id, update }: { id: string; update: Partial<User> } = req.body;
-  UserSchema.findByIdAndUpdate(id, update, { new: true })
-    .then((user: User | null) => {
-      if (!user) {
-        return res.status(404).json({ message: "user not found" });
-      }
-      console.log("Successfully updated!");
-      console.log(user);
-      res.json(user);
-    })
-    .catch((err: Error) => {
-      console.error(err);
-      res.status(500).json({ message: "user updating document" });
-    });
-});
+router.put(
+  "/users/",
+  requireAdmin,
+  (req: Express.Request, res: Express.Response) => {
+    const { id, update }: { id: string; update: object } = req.body;
+    UserSchema.findByIdAndUpdate(id, update, { new: true })
+      .then((user: object | null) => {
+        if (!user) {
+          return res.status(404).json({ message: "user not found" });
+        }
+        console.log("Successfully updated!");
+        console.log(user);
+        res.json(user);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+        res.status(500).json({ message: "user updating document" });
+      });
+  },
+);
 
-router.delete("/users/:id", (req: Express.Request, res: Express.Response) => {
-  UserSchema.findByIdAndDelete(req.params.id)
-    .then((deleted: User | null) => {
-      res.send(deleted);
-    })
-    .catch((err: Error) => {
-      res.json(err);
-    });
-});
+router.delete(
+  "/users/:id",
+  requireAdmin,
+  (req: Express.Request, res: Express.Response) => {
+    UserSchema.findByIdAndDelete(req.params.id)
+      .then((deleted: object | null) => {
+        res.send(deleted);
+      })
+      .catch((err: Error) => {
+        res.json(err);
+      });
+  },
+);
 
 router.post(
   "/assign-targets",
+  requireAdmin,
   async (req: Express.Request, res: Express.Response) => {
     try {
       await assignTargets();
