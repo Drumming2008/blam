@@ -57,10 +57,17 @@ h1 {
   gap: 24px;
 }
 
-#header > img {
+#header > .spoon {
   height: 20px;
 
   &:last-child { rotate: 180deg; }
+}
+
+.spoon {
+  aspect-ratio: 1200 / 291;
+  mask-image: url("./images/spoon.png");
+  mask-size: 100%;
+  background: currentColor;
 }
 
 #leaderboard {
