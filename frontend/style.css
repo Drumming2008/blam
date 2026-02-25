@@ -74,6 +74,7 @@ h1 {
   margin-top: 25px;
   width: 75%;
   border-collapse: collapse;
+  position: relative;
 }
 
 tr {
@@ -154,4 +155,23 @@ th {
 
 .status.dead::after {
   content: "Dead";
+}
+
+#reload-icon {
+  mask-image: url("./images/reload.png");
+  mask-size: 100%;
+  background: currentColor;
+  aspect-ratio: 1;
+  height: 1.25em;
+}
+
+#reload-leaderboard {
+  position: absolute;
+  right: 12.5%;
+  padding: 10px;
+  border-radius: 100px;
+}
+
+#reload-leaderboard:hover {
+  background: #222224;
 }
