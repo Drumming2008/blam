@@ -48,12 +48,18 @@ h1 {
 }
 
 #leaderboard {
-  list-style: none;
   margin-top: 25px;
   width: 75%;
 }
 
-li {
+tr, thead {
   border-bottom: 1px solid gray;
+}
+
+td, th {
   padding: 5px;
+}
+
+:where(td, th):not(:last-child) {
+  border-right: 1px solid gray;
 }
