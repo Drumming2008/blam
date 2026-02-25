@@ -9,13 +9,10 @@ class Database {
 
   _connect() {
     mongoose
-      .connect(`mongodb://${server}/${database}`, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
+      .connect(`mongodb://${server}/${database}`)
       .then(dbSuccess())
       .catch((err) => {
-        console.error("Database connection error");
+        console.error("Database connection error", err);
       });
   }
 }

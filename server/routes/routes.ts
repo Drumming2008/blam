@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const UserSchema = require("../models/users.ts");
+const UserSchema = require("../models/user.ts");
 router.get("/user/", (req, res) => {
   UserSchema.find({})
     .then((users) => {
