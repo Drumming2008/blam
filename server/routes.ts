@@ -1,6 +1,6 @@
 import * as Express from "express";
-import { assignTargets } from "./functions";
-import { UserSchema } from "./models/user.ts";
+import { assignTargets, blammo } from "./functions";
+import { type User, UserSchema } from "./models/user.ts";
 import { requireAdmin } from "./auth";
 
 const router = Express.Router();
@@ -17,7 +17,7 @@ router.get("/users/", (req: Express.Request, res: Express.Response) => {
 });
 
 router.get("/leaderboard", (req: Express.Request, res: Express.Response) => {
-  UserSchema.find({}, { name: 1, score: 1, _id: 0 })
+  UserSchema.find({}, { name: 1, score: 1, alive: 1, _id: 0 })
     .then((users: User[]) => {
       res.json(users);
     })
@@ -44,20 +44,19 @@ router.post("/users/add", (req: Express.Request, res: Express.Response) => {
     email: req.body.email,
     grade: req.body.grade,
   })
-    .then((user: object) => {
+    .then((user: User) => {
       console.log(user);
       res.json(user);
     })
-      .then((user: object) => {
-        console.log(user);
-        res.json(user);
-      })
-      .catch((err: Error) => {
-        console.error(err);
-        res.status(500).send("error creating record");
-      });
-  },
-);
+    .then((user: User) => {
+      console.log(user);
+      res.json(user);
+    })
+    .catch((err: Error) => {
+      console.error(err);
+      res.status(500).send("error creating record");
+    });
+});
 
 router.put(
   "/users/",
@@ -104,6 +103,20 @@ router.post(
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "error assigning targets", err });
+    }
+  },
+);
+
+router.post(
+  "/blammo",
+  requireAdmin,
+  async (req: Express.Request, res: Express.Response) => {
+    try {
+      await blammo(req.body.user);
+      res.json({ message: "user blammoed" });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "error executing blammo", err });
     }
   },
 );

@@ -6,9 +6,6 @@ export function requireAdmin(
   next: Express.NextFunction,
 ) {
   const token = req.headers["authorization"];
-  console.log("cheese tax:");
-  console.log(token);
-  console.log(process.env.SECRET);
   if (!token || token !== process.env.SECRET) {
     return res.status(401).json({ message: "unauthorized" });
   }
