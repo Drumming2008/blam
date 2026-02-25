@@ -1,56 +1,52 @@
+import type * as Express from "express";
 const express = require("express");
-const router = express.Router();
+const router: Express.Router = express.Router();
 const UserSchema = require("../models/user.ts");
-router.get("/users/", (req, res) => {
+
+router.get("/users/", (req: Express.Request, res: Express.Response) => {
   UserSchema.find({})
-    .then((users) => {
+    .then((users: object[]) => {
       console.log("succesfully got entire db");
       console.log(users);
       res.json(users);
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       console.error(err);
     });
 });
 
-router.get("/users/:id", (req, res) => {
-  userSchema
-    .findById(req.params.id)
-    .then((user) => {
+router.get("/users/:id", (req: Express.Request, res: Express.Response) => {
+  UserSchema.findById(req.params.id)
+    .then((user: object | null) => {
       console.log("succesfully got user");
       console.log(user);
       res.json(user);
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       console.error(err);
     });
 });
 
-router.post("/users/add", (req, res) => {
-  userSchema
-    .create({
-      registration: req.body.registration,
-      model: req.body.model,
-      airline: req.body.airline,
-      category: req.body.category,
-      image: req.body.image,
-    })
-    .then((user) => {
+router.post("/users/add", (req: Express.Request, res: Express.Response) => {
+  UserSchema.create({
+    name: req.body.name,
+    email: req.body.email,
+    grade: req.body.grade,
+  })
+    .then((user: object) => {
       console.log(user);
       res.json(user);
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       console.error(err);
       res.status(500).send("error creating record");
     });
 });
 
-router.put("/users/", (req, res) => {
-  const { id, update } = req.body;
-
-  userSchema
-    .findByIdAndUpdate(id, update, { new: true })
-    .then((user) => {
+router.put("/users/", (req: Express.Request, res: Express.Response) => {
+  const { id, update }: { id: string; update: object } = req.body;
+  UserSchema.findByIdAndUpdate(id, update, { new: true })
+    .then((user: object | null) => {
       if (!user) {
         return res.status(404).json({ message: "user not found" });
       }
@@ -58,19 +54,18 @@ router.put("/users/", (req, res) => {
       console.log(user);
       res.json(user);
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       console.error(err);
       res.status(500).json({ message: "user updating document" });
     });
 });
 
-router.delete("/users/:id", (req, res) => {
-  userSchema
-    .findByIdAndDelete(req.params.id)
-    .then((deleted) => {
+router.delete("/users/:id", (req: Express.Request, res: Express.Response) => {
+  UserSchema.findByIdAndDelete(req.params.id)
+    .then((deleted: object | null) => {
       res.send(deleted);
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       res.json(err);
     });
 });
