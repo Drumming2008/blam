@@ -6,7 +6,7 @@ import { requireAdmin } from "./auth";
 
 const router = Express.Router();
 router.get(
-  "/users/",
+  "/api/users/",
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
     UserSchema.find({})
@@ -21,18 +21,21 @@ router.get(
   },
 );
 
-router.get("/leaderboard", (req: Express.Request, res: Express.Response) => {
-  UserSchema.find({}, { name: 1, score: 1, alive: 1, _id: 0 })
-    .then((users: User[]) => {
-      res.json(users);
-    })
-    .catch((err: Error) => {
-      console.error(err);
-    });
-});
+router.get(
+  "/api/leaderboard",
+  (req: Express.Request, res: Express.Response) => {
+    UserSchema.find({}, { name: 1, score: 1, alive: 1, _id: 0 })
+      .then((users: User[]) => {
+        res.json(users);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+      });
+  },
+);
 
 router.get(
-  "/users/:id",
+  "/api/users/:id",
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
     UserSchema.findById(req.params.id)
@@ -48,7 +51,7 @@ router.get(
 );
 
 router.post(
-  "/users/add",
+  "/api/users/add",
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
     UserSchema.create({
@@ -56,18 +59,19 @@ router.post(
       email: req.body.email,
       grade: req.body.grade,
     })
-    .then((user: User) => {
-      console.log(user);
-      res.json(user);
-    })
-    .catch((err: Error) => {
-      console.error(err);
-      res.status(500).send("error creating record");
-    });
-});
+      .then((user: User) => {
+        console.log(user);
+        res.json(user);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+        res.status(500).send("error creating record");
+      });
+  },
+);
 
 router.put(
-  "/users/",
+  "/api/users/",
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
     const { id, update }: { id: string; update: Partial<User> } = req.body;
@@ -88,7 +92,7 @@ router.put(
 );
 
 router.delete(
-  "/users/:id",
+  "/api/users/:id",
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
     UserSchema.findByIdAndDelete(req.params.id)
@@ -102,7 +106,7 @@ router.delete(
 );
 
 router.post(
-  "/assign-targets",
+  "/api/assign-targets",
   requireAdmin,
   async (req: Express.Request, res: Express.Response) => {
     try {
@@ -116,7 +120,7 @@ router.post(
 );
 
 router.post(
-  "/blammo",
+  "/api/blammo",
   requireAdmin,
   async (req: Express.Request, res: Express.Response) => {
     try {
@@ -128,24 +132,27 @@ router.post(
     }
   },
 );
-router.post("/reports/add", (req: Express.Request, res: Express.Response) => {
-  ReportSchema.create({
-    name: req.body.name,
-    target: req.body.target,
-    method: req.body.method,
-  })
-    .then((report: Report) => {
-      console.log(report);
-      res.json(report);
+router.post(
+  "/api/reports/add",
+  (req: Express.Request, res: Express.Response) => {
+    ReportSchema.create({
+      name: req.body.name,
+      target: req.body.target,
+      method: req.body.method,
     })
-    .catch((err: Error) => {
-      console.error(err);
-      res.status(500).send("error creating record");
-    });
-});
+      .then((report: Report) => {
+        console.log(report);
+        res.json(report);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+        res.status(500).send("error creating record");
+      });
+  },
+);
 
 router.get(
-  "/reports/",
+  "/api/reports/",
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
     UserSchema.find({})
