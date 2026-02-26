@@ -17,4 +17,4 @@ const reportSchema = new Schema({
 
 export type Report = InferSchemaType<typeof reportSchema>;
 
-export const ReportSchema = mongoose.model("User", reportSchema);
+export const ReportSchema = mongoose.model("Report", reportSchema);
