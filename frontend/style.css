@@ -295,17 +295,11 @@ form > label:has([required]) > span::after {
 }
 
 #submit {
-  height: 40px;
   width: 50%;
   max-width: 300px;
-  margin-left: auto;
-  max-width: 300px;
-  width: 50%;
 }
 
-button, #submit,
-.accept,
-.reject {
+button {
   background: var(--bg-light);
   height: 40px;
   cursor: pointer;
