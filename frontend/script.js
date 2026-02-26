@@ -1,5 +1,5 @@
 async function loadLeaderboard() {
-  const res = await fetch("https://blam.rkmr.dev/api/leaderboard");
+  const res = await fetch(`${API_URL}/leaderboard`);
   const users = await res.json();
 
   users.sort((a, b) => b.score - a.score);

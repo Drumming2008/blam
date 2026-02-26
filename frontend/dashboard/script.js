@@ -2,7 +2,7 @@ let apiPassword = null;
 let users = null;
 
 async function loadUsers() {
-  const res = await fetch("https://blam.rkmr.dev/api/users/", {
+  const res = await fetch(`${API_URL}/users/`, {
     headers: { "api-auth": apiPassword },
   });
   users = await res.json();
@@ -20,7 +20,7 @@ async function loadUsers() {
 }
 
 async function loadReports() {
-  const res = await fetch("https://blam.rkmr.dev/api/reports/", {
+  const res = await fetch(`${API_URL}/reports/`, {
     headers: { "api-auth": apiPassword },
   });
   const reports = await res.json();
@@ -48,7 +48,7 @@ async function blammoUser(user) {
   loadUsers();
 }
 async function randomize() {
-  await fetch("https://blam.rkmr.dev/api/assign-targets/", {
+  await fetch(`${API_URL}/assign-targets/`, {
     method: "POST",
     headers: { "api-auth": apiPassword },
   });
@@ -103,7 +103,7 @@ async function attemptLogin() {
   errorEl.style.display = "none";
   let res;
   try {
-    res = await fetch("https://blam.rkmr.dev/api/auth", {
+    res = await fetch(`${API_URL}/auth`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "api-auth": password },
     });
