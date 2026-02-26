@@ -131,7 +131,7 @@ router.post(
 );
 router.post("/reports/add", (req: Express.Request, res: Express.Response) => {
   ReportSchema.create({
-    name: req.body.name,
+    user: req.body.user,
     target: req.body.target,
     method: req.body.method,
   })
@@ -149,11 +149,11 @@ router.get(
   "/reports/",
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
-    UserSchema.find({})
-      .then((users: User[]) => {
+    Report.find({})
+      .then((reports: Report[]) => {
         console.log("successfully got entire db");
-        console.log(users);
-        res.json(users);
+        console.log(reports);
+        res.json(reports);
       })
       .catch((err: Error) => {
         console.error(err);

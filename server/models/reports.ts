@@ -1,7 +1,7 @@
 import mongoose, { type InferSchemaType, Schema } from "mongoose";
 
 const reportSchema = new Schema({
-  name: {
+  user: {
     type: String,
     required: true,
   },

@@ -13,6 +13,21 @@ async function loadUsers() {
     document.getElementById("users-table-body").append(tr);
   }
 }
+async function loadReports() {
+  const res = await fetch("https://blam.rkmr.dev/api/reports/", {
+    headers: { "api-auth": apiPassword },
+  });
+  const reports = await res.json();
+  console.log(reports);
+  document.getElementById("requests").innerHTML = "";
+  for (let r of reports) {
+    let li = document.createElement("li");
+    li.innerHTML = `${r.user} eliminated ${r.target}
+        <button class="accept">Accept</button>
+        <button class="reject">Reject</button>`;
+    document.getElementById("requests").append(li);
+  }
+}
 
 async function randomize() {
   await fetch("https://blam.rkmr.dev/api/assign-targets/", {
@@ -42,6 +57,7 @@ async function attemptLogin() {
     document.getElementById("auth").style.display = "none";
     document.getElementById("main-content").style.display = "flex";
     loadUsers();
+    loadReports();
   } else if (res.status === 401) {
     document.getElementById("auth").style.display = "none";
     document.getElementById("unauthorized-msg").style.display = "block";
