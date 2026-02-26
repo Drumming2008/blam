@@ -138,34 +138,17 @@ th {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--bg);
   font-family: "Limelight", sans-serif;
   margin: 0 auto;
 }
 
-.rank.gold {
-  background: gold;
-
-  &::after {
-    content: "1";
-  }
+.rank:is(.gold, .silver, .bronze) {
+  color: var(--bg);
 }
 
-.rank.silver {
-  background: silver;
-
-  &::after {
-    content: "2";
-  }
-}
-
-.rank.bronze {
-  background: #cd7f32;
-
-  &::after {
-    content: "3";
-  }
-}
+.rank.gold   { background: gold; }
+.rank.silver { background: silver; }
+.rank.bronze { background: #cd7f32; }
 
 .status {
   height: 1.25em;

@@ -13,7 +13,7 @@ async function loadLeaderboard() {
     const rankClass = rankClasses[index] ?? "";
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td><div class="rank ${rankClass}"></div></td>
+      <td><div class="rank ${rankClass}">${index + 1}</div></td>
       <td>${user.name}</td>
       <td>${user.grade}</td>
       <td>${user.score}</td>
