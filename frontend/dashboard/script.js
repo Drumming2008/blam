@@ -27,10 +27,11 @@ async function loadReports() {
   console.log(reports);
   document.getElementById("requests").innerHTML = "";
   for (let r of reports) {
+    if (!r.active) continue;
     let li = document.createElement("li");
     li.innerHTML = `${getUserById(r.name)} eliminated ${getUserById(r.target)}
-      <button class="accept" onclick="blammoUser('${r.name}')">Accept</button>
-      <button class="reject">Reject</button>`;
+      <button class="accept" onclick="blammoUser('${r.name}', '${r._id}')">Accept</button>
+      <button class="reject" onclick="completeReport('${r._id}')">Reject</button>`;
     document.getElementById("requests").append(li);
   }
 }
@@ -38,11 +39,21 @@ async function loadReports() {
 function getUserById(id) {
   return users?.find((u) => u._id === id)?.name;
 }
-async function blammoUser(user) {
+async function blammoUser(user, report) {
   await fetch("https://blam.rkmr.dev/api/blammo/", {
     method: "POST",
     headers: { "api-auth": apiPassword, "Content-Type": "application/json" },
     body: JSON.stringify({ user: user }),
+  });
+  completeReport(report);
+  loadUsers();
+  loadReports();
+}
+async function completeReport(report) {
+  await fetch("https://blam.rkmr.dev/api/reports/complete", {
+    method: "POST",
+    headers: { "api-auth": apiPassword, "Content-Type": "application/json" },
+    body: JSON.stringify({ id: report }),
   });
 
   loadUsers();

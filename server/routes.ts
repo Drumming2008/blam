@@ -147,6 +147,7 @@ router.post("/reports/add", (req: Express.Request, res: Express.Response) => {
 
 router.post(
   "/reports/complete",
+  requireAdmin,
   (req: Express.Request, res: Express.Response) => {
     ReportSchema.findByIdAndUpdate(req.body.id, { active: false })
       .then((report: Report | null) => {
