@@ -243,6 +243,10 @@ input {
   background: var(--bg-light);
 }
 
+::placeholder {
+  color: #9b9ba6;
+}
+
 form {
   margin-top: 25px;
   width: 75%;
@@ -414,7 +418,7 @@ button:active, #submit:active,
   align-items: center;
   justify-content: center;
   min-height: 60vh;
-  gap: 12px;
+  gap: 10px;
 }
 
 #auth label {
@@ -440,6 +444,7 @@ button:active, #submit:active,
   text-align: center;
   margin-top: 4rem;
   font-size: 1.5rem;
+  color: var(--error);
 }
 
 #login-btn {
@@ -450,10 +455,24 @@ button:active, #submit:active,
   color: var(--error);
   background: transparent;
   border: 1px solid var(--error);
+  height: max-content;
+  margin: auto;
 }
 
 #add-btn {
   color: var(--accent);
   background: transparent;
   border: 1px solid var(--accent);
+}
+
+#add-user-form {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#add-user-form > div {
+  display: flex;
+  gap: 10px;
 }

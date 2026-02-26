@@ -38,14 +38,16 @@
                     <tbody id="users-table-body"></tbody>
                 </table>
             </section>
-            <div id="add-user-form">
+            <section id="add-user-form">
                 <h3>Add User</h3>
-                <input type="text" id="add-name" placeholder="Name" />
-                <input type="email" id="add-email" placeholder="Email" />
-                <input type="text" id="add-grade" placeholder="Grade" />
-                <button onclick="addUser()" id="add-btn">Add</button>
+                <div>
+                    <input type="text" id="add-name" placeholder="Name" />
+                    <input type="email" id="add-email" placeholder="Email" />
+                    <input type="text" id="add-grade" placeholder="Grade" />
+                    <button onclick="addUser()" id="add-btn">Add</button>
+                </div>
                 <span id="add-error"></span>
-            </div>
+            </section>
             <section id="requests-section">
                 <h2>Blammo Requests</h2>
                 <ul id="requests"></ul>
