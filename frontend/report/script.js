@@ -1,3 +1,7 @@
+fetch("../api/users", r => {
+  if (r.ok) console.log(r.text())
+})
+
 let names = [
   "Finn",
   "Sam",
@@ -20,13 +24,24 @@ for (let i of document.querySelectorAll(".autocomplete")) {
     menuItem.innerText = n
     menuItem.tabIndex = -1
     menu.append(menuItem)
+    menuItem.onclick = () => {
+      i.value = n
+    }
   }
+
+  addEventListener("resize", () => {
+    console.log("sd;lfkjh")
+    let box = i.getBoundingClientRect()
+    menu.style.left = box.left + "px"
+    menu.style.top = box.bottom + "px"
+    menu.style.width = box.width + 4 + "px"
+  })
 
   i.onfocus = () => {
     let box = i.getBoundingClientRect()
     menu.style.left = box.left + "px"
     menu.style.top = box.bottom + "px"
-    menu.style.width = box.width + "px"
+    menu.style.width = box.width + 4 + "px"
     menu.style.display = ""
     setTimeout(() => {
       menu.classList.remove("hidden")
@@ -36,7 +51,8 @@ for (let i of document.querySelectorAll(".autocomplete")) {
     }, 200)
   }
 
-  i.onblur = () => {
+  i.onblur = e => {
+    console.log(e)
     menu.classList.add("hidden")
     setTimeout(() => {
       menu.style.display = "none"
