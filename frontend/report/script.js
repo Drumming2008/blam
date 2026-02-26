@@ -100,6 +100,7 @@ function onNamesLoaded() {
 
     fetch(`${API_URL}/reports/add`, {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         user: nameToUserId.get(name.toLowerCase()),
         target: nameToUserId.get(target.toLowerCase()),

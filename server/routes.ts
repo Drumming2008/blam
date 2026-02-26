@@ -149,7 +149,11 @@ router.post(
   "/reports/complete",
   (req: Express.Request, res: Express.Response) => {
     ReportSchema.findByIdAndUpdate(req.body.id, { active: false })
-      .then((report: Report) => {
+      .then((report: Report | null) => {
+        if (!report) {
+          console.log("cooked (report does not exist)")
+          return
+        }
         console.log(report);
         res.json(report);
       })
