@@ -251,13 +251,24 @@ form > label:has([required]) > span::after {
   margin-left: 5px;
 }
 
+.form-footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#form-error {
+  flex-grow: 1;
+  color: tomato;
+  font-size: 0.9em;
+}
+
 #submit {
   background: #36363b;
   height: 40px;
   width: 50%;
-  margin-left: auto;
   max-width: 300px;
-  cursor: pointer;
   transition: filter 0.2s linear, outline 0.1s ease;
   font-family: inherit;
 }

@@ -12,18 +12,21 @@
             Blam
             <div class="spoon"></div>
         </h1>
-        <form>
+        <form id="form">
             <span>Report your Blammo here! Once submitted, we will reach out to you shortly on who your new target is. Your new target will be the target of the person you Blammoed, so you can ask them if you want a head start, but please submit your Blammo regardless so we can keep track. Please do not bring any disputes to us—you and your target must agree.</span>
             <label>
                 <span>What's your name?</span><input type="text" id="name" required autocomplete="off" class="autocomplete">
             </label>
             <label>
-                <span>Who did you Blammo (the person you just eliminated)?</span><input type="text" id="blammoed" required autocomplete="off" class="autocomplete">
+                <span>Who did you Blammo (the person you just eliminated)?</span><input type="text" id="target" required autocomplete="off" class="autocomplete">
             </label>
             <label>
-                <span>If you Blammoed your target in a creative way, feel free to put it down below!</span><input type="text" id="blammoed" autocomplete="off">
+                <span>If you Blammoed your target in a creative way, feel free to put it down below!</span><input type="text" id="method" autocomplete="off">
             </label>
-            <input type="submit" value="Submit" id="submit">
+            <div class="form-footer">
+                <p id="form-error"></p>
+                <button id="submit">Submit</button>
+            </div>
         </form>
         <script src="./script.js"></script>
     </body>
