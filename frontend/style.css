@@ -288,7 +288,6 @@ form > label:has([required]) > span::after {
   width: 100%;
   position: absolute;
   transition: clip-path 0.2s ease, border 0.1s ease, padding 0.1s ease, opacity 0.2s linear;
-  position: absolute;
   background: #36363b;
   border: 2px solid white;
   margin: 0 -2px;
