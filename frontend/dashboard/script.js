@@ -1,13 +1,17 @@
-let apiPassword = null;
-let users = null;
+let apiPassword = localStorage.getItem("api-password");
+let users = null, usersLoaded = null;
 
 async function loadUsers() {
+  let resolve;
+  ({ promise: usersLoaded, resolve } = Promise.withResolvers());
+
   const res = await fetch(`${API_URL}/users/`, {
     headers: { "api-auth": apiPassword },
   });
   users = await res.json();
   console.log(users);
   document.getElementById("users-table-body").innerHTML = "";
+
   for (let u of users) {
     let tr = document.createElement("tr");
     tr.innerHTML = `
@@ -17,6 +21,8 @@ async function loadUsers() {
     `;
     document.getElementById("users-table-body").append(tr);
   }
+
+  resolve();
 }
 
 async function loadReports() {
@@ -24,6 +30,8 @@ async function loadReports() {
     headers: { "api-auth": apiPassword },
   });
   const reports = await res.json();
+  await usersLoaded;
+
   console.log(reports);
   document.getElementById("requests").innerHTML = "";
   for (let r of reports) {
@@ -108,8 +116,9 @@ async function removeUser(id) {
   }
 }
 
-async function attemptLogin() {
-  const password = document.getElementById("password-input").value;
+const passwordInput = document.getElementById("password-input")
+
+async function attemptLogin(password) {
   const errorEl = document.getElementById("auth-error");
   errorEl.style.display = "none";
   let res;
@@ -125,6 +134,7 @@ async function attemptLogin() {
   }
   if (res.ok) {
     apiPassword = password;
+    localStorage.setItem("api-password", password)
     document.getElementById("auth").style.display = "none";
     document.getElementById("main-content").style.display = "flex";
     loadUsers();
@@ -138,7 +148,9 @@ async function attemptLogin() {
   }
 }
 
-document.getElementById("login-btn").addEventListener("click", attemptLogin);
-document.getElementById("password-input").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") attemptLogin();
+document.getElementById("login-btn").addEventListener("click", () => attemptLogin(passwordInput.value));
+passwordInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") attemptLogin(passwordInput.value);
 });
+
+if (apiPassword) attemptLogin(apiPassword); // from localStorage
