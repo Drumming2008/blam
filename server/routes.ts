@@ -1,20 +1,25 @@
 import * as Express from "express";
 import { assignTargets, blammo } from "./functions";
 import { type User, UserSchema } from "./models/user.ts";
+import { type Report, ReportSchema } from "./models/reports.ts";
 import { requireAdmin } from "./auth";
 
 const router = Express.Router();
-router.get("/users/", (req: Express.Request, res: Express.Response) => {
-  UserSchema.find({})
-    .then((users: User[]) => {
-      console.log("successfully got entire db");
-      console.log(users);
-      res.json(users);
-    })
-    .catch((err: Error) => {
-      console.error(err);
-    });
-});
+router.get(
+  "/users/",
+  requireAdmin,
+  (req: Express.Request, res: Express.Response) => {
+    UserSchema.find({})
+      .then((users: User[]) => {
+        console.log("successfully got entire db");
+        console.log(users);
+        res.json(users);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+      });
+  },
+);
 
 router.get("/leaderboard", (req: Express.Request, res: Express.Response) => {
   UserSchema.find({}, { name: 1, score: 1, alive: 1, _id: 0 })
@@ -26,24 +31,31 @@ router.get("/leaderboard", (req: Express.Request, res: Express.Response) => {
     });
 });
 
-router.get("/users/:id", (req: Express.Request, res: Express.Response) => {
-  UserSchema.findById(req.params.id)
-    .then((user: User | null) => {
-      console.log("succesfully got user");
-      console.log(user);
-      res.json(user);
-    })
-    .catch((err: Error) => {
-      console.error(err);
-    });
-});
+router.get(
+  "/users/:id",
+  requireAdmin,
+  (req: Express.Request, res: Express.Response) => {
+    UserSchema.findById(req.params.id)
+      .then((user: User | null) => {
+        console.log("succesfully got user");
+        console.log(user);
+        res.json(user);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+      });
+  },
+);
 
-router.post("/users/add", (req: Express.Request, res: Express.Response) => {
-  UserSchema.create({
-    name: req.body.name,
-    email: req.body.email,
-    grade: req.body.grade,
-  })
+router.post(
+  "/users/add",
+  requireAdmin,
+  (req: Express.Request, res: Express.Response) => {
+    UserSchema.create({
+      name: req.body.name,
+      email: req.body.email,
+      grade: req.body.grade,
+    })
     .then((user: User) => {
       console.log(user);
       res.json(user);
@@ -114,6 +126,37 @@ router.post(
       console.error(err);
       res.status(500).json({ message: "error executing blammo", err });
     }
+  },
+);
+router.post("/reports/add", (req: Express.Request, res: Express.Response) => {
+  ReportSchema.create({
+    name: req.body.name,
+    target: req.body.target,
+    method: req.body.method,
+  })
+    .then((report: Report) => {
+      console.log(report);
+      res.json(report);
+    })
+    .catch((err: Error) => {
+      console.error(err);
+      res.status(500).send("error creating record");
+    });
+});
+
+router.get(
+  "/reports/",
+  requireAdmin,
+  (req: Express.Request, res: Express.Response) => {
+    UserSchema.find({})
+      .then((users: User[]) => {
+        console.log("successfully got entire db");
+        console.log(users);
+        res.json(users);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+      });
   },
 );
 
