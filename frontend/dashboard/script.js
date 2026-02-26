@@ -17,6 +17,8 @@ async function loadUsers() {
     tr.innerHTML = `
       <td>${u.name}</td>
       <td>${getUserById(u.target) ?? "—"}</td>
+      <td>${u.email}</td>
+      <td><div class="status ${u.alive ? "alive" : "dead"}"></div></td>
       <td><button class="remove-btn" onclick="removeUser('${u._id}')">Remove</button></td>
     `;
     document.getElementById("users-table-body").append(tr);
@@ -65,6 +67,7 @@ async function completeReport(report) {
   });
 
   loadUsers();
+  loadReports();
 }
 async function randomize() {
   await fetch(`${API_URL}/assign-targets/`, {
