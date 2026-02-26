@@ -22,7 +22,7 @@ router.get(
 );
 
 router.get("/leaderboard", (req: Express.Request, res: Express.Response) => {
-  UserSchema.find({}, { name: 1, grade: 1, score: 1, alive: 1, _id: 0 })
+  UserSchema.find({}, { name: 1, grade: 1, score: 1, alive: 1, _id: 1 })
     .then((users: User[]) => {
       res.json(users);
     })
