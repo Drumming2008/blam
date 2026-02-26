@@ -1,377 +1,434 @@
 @import url("https://fonts.googleapis.com/css2?family=Limelight&display=swap");
 
 :root {
-  --bg: #121214;
-  --accent: greenyellow;
+    --bg: #121214;
+    --accent: greenyellow;
 }
 
 * {
-  box-sizing: border-box;
-  background: transparent;
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  border-radius: 0;
-  color: inherit;
-  line-height: 1.4;
+    box-sizing: border-box;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 0;
+    color: inherit;
+    line-height: 1.4;
 }
 
 /* nobody uses the other ones */
 :not(h1, h2, h3) {
-  font-size: inherit;
+    font-size: inherit;
 }
 
-a:any-link, button {
-  cursor: pointer;
+a:any-link,
+button {
+    cursor: pointer;
 }
 
 :focus-visible {
-  outline: 2px solid white;
+    outline: 2px solid white;
 }
 
-html, body {
-  height: 100%;
+html,
+body {
+    height: 100%;
 }
 
 body {
-  background: var(--bg);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 50px 0;
-  font-family: system-ui, Helvetica, sans-serif;
+    background: var(--bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0;
+    font-family: system-ui, Helvetica, sans-serif;
 }
 
 h1 {
-  font-family: "Limelight", sans-serif;
-  font-size: 2.5em;
+    font-family: "Limelight", sans-serif;
+    font-size: 2.5em;
 }
 
 @keyframes header-gap {
-  from {
-    gap: 100px;
-    letter-spacing: 5px;
-  }
+    from {
+        gap: 100px;
+        letter-spacing: 5px;
+    }
 }
 
 #header {
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  letter-spacing: 0;
-  animation: header-gap 1s cubic-bezier(0.08, 0, 0.78, 1.22) forwards;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    letter-spacing: 0;
+    animation: header-gap 1s cubic-bezier(0.08, 0, 0.78, 1.22) forwards;
 }
 
 @keyframes spoon-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 #header > .spoon {
-  height: 20px;
-  animation: spoon-fade 1s linear forwards;
+    height: 20px;
+    animation: spoon-fade 1s linear forwards;
 
-  &:last-child { rotate: 180deg; }
+    &:last-child {
+        rotate: 180deg;
+    }
 }
 
-#header.no-anim, #header.no-anim > .spoon {
-  animation: none;
+#header.no-anim,
+#header.no-anim > .spoon {
+    animation: none;
 }
 
 .spoon {
-  aspect-ratio: 1200 / 291;
-  mask-image: url("./images/spoon.png");
-  mask-size: 100%;
-  background: currentColor;
+    aspect-ratio: 1200 / 291;
+    mask-image: url("./images/spoon.png");
+    mask-size: 100%;
+    background: currentColor;
 }
 
 #leaderboard {
-  margin-top: 25px;
-  width: 75%;
-  border-collapse: collapse;
-  position: relative;
+    margin-top: 25px;
+    width: 75%;
+    border-collapse: collapse;
+    position: relative;
 }
 
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 tr {
-  border-bottom: 1px solid gray;
+    border-bottom: 1px solid gray;
 }
 
 thead > tr {
-  border-bottom: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
 }
 
-td, th {
-  padding: 5px;
-  text-align: center;
+td,
+th {
+    padding: 5px;
+    text-align: center;
 }
 
 th {
-  color: var(--accent);
-  font-size: 1.25em;
+    color: var(--accent);
+    font-size: 1.25em;
 }
 
 .rank {
-  height: 1.25em;
-  aspect-ratio: 1;
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  font-family: "Limelight", sans-serif;
-  margin: 0 auto;
+    height: 1.25em;
+    aspect-ratio: 1;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-family: "Limelight", sans-serif;
+    margin: 0 auto;
 }
 
 .rank.gold {
-  background: gold;
+    background: gold;
 
-  &::after {
-    content: "1";
-  }
+    &::after {
+        content: "1";
+    }
 }
 
 .rank.silver {
-  background: silver;
+    background: silver;
 
-  &::after {
-    content: "2";
-  }
+    &::after {
+        content: "2";
+    }
 }
 
 .rank.bronze {
-  background: #cd7f32;
+    background: #cd7f32;
 
-  &::after {
-    content: "3";
-  }
+    &::after {
+        content: "3";
+    }
 }
 
 .status {
-  height: 1.25em;
-  width: 50%;
-  border-radius: 5px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    height: 1.25em;
+    width: 50%;
+    border-radius: 5px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .status.alive {
-  border: 1px solid var(--accent);
+    border: 1px solid var(--accent);
 }
 
 .status.alive::after {
-  content: "Alive";
+    content: "Alive";
 }
 
 .status.dead {
-  border: 1px solid crimson;
+    border: 1px solid crimson;
 }
 
 .status.dead::after {
-  content: "Dead";
+    content: "Dead";
 }
 
 .buttons {
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  right: 25px;
-  padding: 10px;
-  text-decoration: none;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 25px;
+    padding: 10px;
+    text-decoration: none;
 }
 
 .button {
-  padding: 10px;
-  cursor: pointer;
-  transition: color 0.1s linear;
+    padding: 10px;
+    cursor: pointer;
+    transition: color 0.1s linear;
 }
 
 .button:hover {
-  color: black;
+    color: black;
 }
 
 .button:active {
-  color: inherit;
+    color: inherit;
 }
 
 .button:after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  top: unset;
-  height: 2px;
-  background: var(--accent);
-  z-index: -1;
-  transition: all 0.2s ease;
+    content: "";
+    position: absolute;
+    inset: 0;
+    top: unset;
+    height: 2px;
+    background: var(--accent);
+    z-index: -1;
+    transition: all 0.2s ease;
 }
 
 .button:hover::after {
-  height: 100%;
+    height: 100%;
 }
 
 .button:active::after {
-  height: 2px;
-  bottom: calc(100% - 2px);
+    height: 2px;
+    bottom: calc(100% - 2px);
 }
 
 form {
-  margin-top: 25px;
-  width: 75%;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+    margin-top: 25px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
 form > label {
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
 }
 
 form > label > span {
-  width: 100%;
+    width: 100%;
 }
 
 form > label > input {
-  width: 100%;
-  background: #36363b;
-  height: 40px;
-  padding: 0 10px;
-  font-family: inherit;
-  transition: outline 0.1s ease;
+    width: 100%;
+    background: #36363b;
+    height: 40px;
+    padding: 0 10px;
+    font-family: inherit;
+    transition: outline 0.1s ease;
 }
 
 form > label:has([required]) > span::after {
-  content: "*";
-  color: crimson;
-  margin-left: 5px;
+    content: "*";
+    color: crimson;
+    margin-left: 5px;
 }
 
 .form-footer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 #form-error {
-  flex-grow: 1;
-  color: tomato;
-  font-size: 0.9em;
+    flex-grow: 1;
+    color: tomato;
+    font-size: 0.9em;
 }
 
 #submit {
-  background: #36363b;
-  height: 40px;
-  width: 50%;
-  max-width: 300px;
-  margin-left: auto;
-  max-width: 300px;
-  width: 50%;
+    background: #36363b;
+    height: 40px;
+    width: 50%;
+    max-width: 300px;
+    margin-left: auto;
+    max-width: 300px;
+    width: 50%;
 }
 
-#submit, #buttons > button, .accept, .reject {
-  background: #36363b;
-  height: 40px;
-  cursor: pointer;
-  transition: filter 0.2s linear, outline 0.1s ease;
-  font-family: inherit;
-  padding: 0 10px;
+#submit,
+#buttons > button,
+.accept,
+.reject {
+    background: #36363b;
+    height: 40px;
+    cursor: pointer;
+    transition:
+        filter 0.2s linear,
+        outline 0.1s ease;
+    font-family: inherit;
+    padding: 0 10px;
 }
 
-#submit:hover, #buttons > button:hover, .accept:hover, .reject:hover {
-  filter: brightness(1.25);
+#submit:hover,
+#buttons > button:hover,
+.accept:hover,
+.reject:hover {
+    filter: brightness(1.25);
 }
 
-#submit:active, #buttons > button:active, .accept:active, .reject:active {
-  filter: brightness(0.95);
+#submit:active,
+#buttons > button:active,
+.accept:active,
+.reject:active {
+    filter: brightness(0.95);
 }
 
 .autocomplete-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  width: 100%;
-  position: absolute;
-  transition: clip-path 0.2s ease, border 0.1s ease, padding 0.1s ease, opacity 0.2s linear;
-  background: #36363b;
-  border: 2px solid white;
-  margin: 0 -2px;
-  padding: 10px;
-  clip-path: inset(0 0 0 0);
-  z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    position: absolute;
+    transition:
+        clip-path 0.2s ease,
+        border 0.1s ease,
+        padding 0.1s ease,
+        opacity 0.2s linear;
+    background: #36363b;
+    border: 2px solid white;
+    margin: 0 -2px;
+    padding: 10px;
+    clip-path: inset(0 0 0 0);
+    z-index: 10;
 }
 
 .autocomplete-menu-item {
-  height: 25px;
-  width: 100%;
-  text-align: left;
-  padding: 5px;
-  display: flex;
-  align-items: center;
+    height: 25px;
+    width: 100%;
+    text-align: left;
+    padding: 5px;
+    display: flex;
+    align-items: center;
 }
 
 .autocomplete-menu-item:hover {
-  background: var(--accent);
-  color: black;
+    background: var(--accent);
+    color: black;
 }
 
 .autocomplete-menu.hidden {
-  opacity: 0;
-  clip-path: inset(0 0 100% 0);
-  border: 0 solid white;
-  padding: 12px;
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    border: 0 solid white;
+    padding: 12px;
 }
 
 #buttons {
-  width: 75%;
-  display: flex;
-  justify-content: center;
-  margin: 25px 0;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
 }
 
 .accept {
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  margin-left: auto;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    margin-left: auto;
 }
 
 .reject {
-  border: 1px solid crimson;
-  color: crimson;
+    border: 1px solid crimson;
+    color: crimson;
 }
 
 #requests-section {
-  width: 75%;
+    width: 75%;
 }
 
 #requests {
-  width: 100%;
-  list-style: none;
+    width: 100%;
+    list-style: none;
 }
 
 #requests > li {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid gray;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid gray;
 }
 
 #requests > li > button {
-  height: max-content
+    height: max-content;
+}
+
+#auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 12px;
+}
+#auth input {
+    padding: 8px 12px;
+    font-size: 1rem;
+}
+#auth button {
+    padding: 8px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+#auth-error {
+    color: red;
+    display: none;
+}
+#main-content {
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+#unauthorized-msg {
+    display: none;
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 1.5rem;
 }

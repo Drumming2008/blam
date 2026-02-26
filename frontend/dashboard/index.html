@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Blam(mo)</title>
-        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="../style.css" />
     </head>
     <body>
         <h1 id="header">
@@ -12,28 +12,43 @@
             Blam Dashboard
             <div class="spoon"></div>
         </h1>
-        <section id="buttons">
-          <button id="randomize">Randomize Targets</button>
-        </section>
-        <section id="users">
-          <table>
-            <thead>
-              <th>User</th>
-              <th>Target</th>
-            </thead>
-            <tbody id="users-table-body"></tbody>
-          </table>
-        </section>
-        <section id="requests-section">
-          <h2>Blammo Requests</h2>
-          <ul id="requests">
-            <li>
-              Ravi eliminated Mr. Burger
-              <button class="accept">Accept</button>
-              <button class="reject">Reject</button>
-            </li>
-          </ul>
-        </section>
+
+        <div id="auth">
+            <label for="password-input"><strong>Enter Password</strong></label>
+            <input type="password" id="password-input" placeholder="Password" />
+            <button id="login-btn">Login</button>
+            <span id="auth-error">Incorrect password. Try again.</span>
+        </div>
+
+        <div id="unauthorized-msg">unauthorized</div>
+
+        <div id="main-content">
+            <section id="buttons">
+                <button id="randomize" onclick="randomize()">
+                    Randomize Targets
+                </button>
+            </section>
+            <section id="users">
+                <table>
+                    <thead>
+                        <th>User</th>
+                        <th>Target</th>
+                    </thead>
+                    <tbody id="users-table-body"></tbody>
+                </table>
+            </section>
+            <section id="requests-section">
+                <h2>Blammo Requests</h2>
+                <ul id="requests">
+                    <li>
+                        Ravi eliminated Mr. Burger
+                        <button class="accept">Accept</button>
+                        <button class="reject">Reject</button>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
         <script src="./script.js"></script>
     </body>
 </html>
