@@ -161,4 +161,12 @@ router.get(
   },
 );
 
+router.post(
+  "/auth/",
+  requireAdmin,
+  (req: Express.Request, res: Express.Response) => {
+    res.status(200).json({ message: "OK" });
+  },
+);
+
 export { router };
