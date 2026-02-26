@@ -2,20 +2,12 @@ import { UserSchema } from "./models/user.ts";
 
 export async function assignTargets(): Promise<void> {
   const users = await UserSchema.find({});
-
-  const ids: string[] = users.map((u) => u._id.toString());
-
-  function derange(arr: string[]): string[] {
-    const shuffled = [...arr].sort(() => Math.random() - 0.5);
-    if (shuffled.every((v, i) => v !== arr[i])) return shuffled;
-    return derange(arr);
-  }
-
-  const shuffled = derange(ids);
-
+  const shuffled = [...users].sort(() => Math.random() - 0.5);
   await Promise.all(
-    users.map((user, i) =>
-      UserSchema.findByIdAndUpdate(user._id, { target: shuffled[i] }),
+    shuffled.map((user, i) =>
+      UserSchema.findByIdAndUpdate(user._id, {
+        target: shuffled[(i + 1) % shuffled.length]._id,
+      }),
     ),
   );
 }
