@@ -99,6 +99,10 @@ h1 {
   position: relative;
 }
 
+table {
+  border-collapse: collapse;
+}
+
 tr {
   border-bottom: 1px solid gray;
 }
@@ -266,12 +270,10 @@ form > label:has([required]) > span::after {
 }
 
 #submit {
-<<<<<<< HEAD
   background: #36363b;
   height: 40px;
   width: 50%;
   max-width: 300px;
-=======
   margin-left: auto;
   max-width: 300px;
   width: 50%;
@@ -281,7 +283,6 @@ form > label:has([required]) > span::after {
   background: #36363b;
   height: 40px;
   cursor: pointer;
->>>>>>> e11c577 (dashboard 1.0)
   transition: filter 0.2s linear, outline 0.1s ease;
   font-family: inherit;
   padding: 0 10px;
