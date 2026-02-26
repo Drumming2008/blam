@@ -149,7 +149,7 @@ router.get(
   "/reports/",
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
-    Report.find({})
+    ReportSchema.find({})
       .then((reports: Report[]) => {
         console.log("successfully got entire db");
         console.log(reports);
