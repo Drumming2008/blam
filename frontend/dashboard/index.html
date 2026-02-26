@@ -12,16 +12,13 @@
             Blam Dashboard
             <div class="spoon"></div>
         </h1>
-
         <div id="auth">
             <label for="password-input"><strong>Enter Password</strong></label>
             <input type="password" id="password-input" placeholder="Password" />
             <button id="login-btn">Login</button>
-            <span id="auth-error">Incorrect password. Try again.</span>
+            <span id="auth-error"></span>
         </div>
-
         <div id="unauthorized-msg">unauthorized</div>
-
         <div id="main-content">
             <section id="buttons">
                 <button id="randomize" onclick="randomize()">
@@ -31,24 +28,28 @@
             <section id="users">
                 <table>
                     <thead>
-                        <th>User</th>
-                        <th>Target</th>
+                        <tr>
+                            <th>User</th>
+                            <th>Target</th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody id="users-table-body"></tbody>
                 </table>
             </section>
+            <div id="add-user-form">
+                <h3>Add User</h3>
+                <input type="text" id="add-name" placeholder="Name" />
+                <input type="email" id="add-email" placeholder="Email" />
+                <input type="text" id="add-grade" placeholder="Grade" />
+                <button onclick="addUser()">Add</button>
+                <span id="add-error"></span>
+            </div>
             <section id="requests-section">
                 <h2>Blammo Requests</h2>
-                <ul id="requests">
-                    <li>
-                        Ravi eliminated Mr. Burger
-                        <button class="accept">Accept</button>
-                        <button class="reject">Reject</button>
-                    </li>
-                </ul>
+                <ul id="requests"></ul>
             </section>
         </div>
-
         <script src="./script.js"></script>
     </body>
 </html>

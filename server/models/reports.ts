@@ -13,6 +13,10 @@ const reportSchema = new Schema({
     type: String,
     default: "",
   },
+  active: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 export type Report = InferSchemaType<typeof reportSchema>;

@@ -145,6 +145,21 @@ router.post("/reports/add", (req: Express.Request, res: Express.Response) => {
     });
 });
 
+router.post(
+  "/reports/complete",
+  (req: Express.Request, res: Express.Response) => {
+    ReportSchema.findByIdAndUpdate(req.body.id, { active: false })
+      .then((report: Report) => {
+        console.log(report);
+        res.json(report);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+        res.status(500).send("error updating record");
+      });
+  },
+);
+
 router.get(
   "/reports/",
   requireAdmin,

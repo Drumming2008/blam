@@ -1,4 +1,5 @@
 import { UserSchema } from "./models/user.ts";
+import nodemailer from "nodemailer";
 
 export async function assignTargets(): Promise<void> {
   const users = await UserSchema.find({});
@@ -20,4 +21,25 @@ export async function blammo(user: string): Promise<void> {
     target: targetUser?.target?.toString(),
   });
   console.log(targetUser);
+}
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+export async function sendEmail(
+  to: string,
+  title: string,
+  content: string,
+): Promise<void> {
+  await transporter.sendMail({
+    from: process.env.EMAIL_USER,
+    to,
+    subject: title,
+    text: content,
+  });
 }
