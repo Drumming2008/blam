@@ -1,5 +1,3 @@
-const id = id => document.getElementById(id)
-
 let names = [
   "Finn",
   "Sam",

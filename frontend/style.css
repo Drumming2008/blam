@@ -54,16 +54,14 @@ h1 {
     gap: 100px;
     letter-spacing: 5px;
   }
-  to {
-    gap: 25px;
-    letter-spacing: 0;
-  }
 }
 
 #header {
   color: var(--accent);
   display: flex;
   align-items: center;
+  gap: 25px;
+  letter-spacing: 0;
   animation: header-gap 1s cubic-bezier(0.08, 0, 0.78, 1.22) forwards;
 }
 
@@ -77,11 +75,14 @@ h1 {
 }
 
 #header > .spoon {
+  height: 20px;
   animation: spoon-fade 1s linear forwards;
 
-  height: 20px;
-
   &:last-child { rotate: 180deg; }
+}
+
+#header.no-anim, #header.no-anim > .spoon {
+  animation: none;
 }
 
 .spoon {
