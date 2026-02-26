@@ -5,7 +5,7 @@ export function requireAdmin(
   res: Express.Response,
   next: Express.NextFunction,
 ) {
-  const token = req.headers["authorization"];
+  const token = req.headers["api-auth"];
   if (!token || token !== process.env.SECRET) {
     return res.status(401).json({ message: "unauthorized" });
   }
