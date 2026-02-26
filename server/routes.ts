@@ -22,7 +22,7 @@ router.get(
 );
 
 router.get("/leaderboard", (req: Express.Request, res: Express.Response) => {
-  UserSchema.find({}, { name: 1, score: 1, alive: 1, _id: 0 })
+  UserSchema.find({}, { name: 1, grade: 1, score: 1, alive: 1, _id: 0 })
     .then((users: User[]) => {
       res.json(users);
     })
@@ -30,22 +30,6 @@ router.get("/leaderboard", (req: Express.Request, res: Express.Response) => {
       console.error(err);
     });
 });
-
-router.get(
-  "/users/:id",
-  requireAdmin,
-  (req: Express.Request, res: Express.Response) => {
-    UserSchema.findById(req.params.id)
-      .then((user: User | null) => {
-        console.log("succesfully got user");
-        console.log(user);
-        res.json(user);
-      })
-      .catch((err: Error) => {
-        console.error(err);
-      });
-  },
-);
 
 router.post(
   "/users/add",
@@ -98,6 +82,22 @@ router.delete(
       })
       .catch((err: Error) => {
         res.json(err);
+      });
+  },
+);
+
+router.get(
+  "/users/:id",
+  requireAdmin,
+  (req: Express.Request, res: Express.Response) => {
+    UserSchema.findById(req.params.id)
+      .then((user: User | null) => {
+        console.log("succesfully got user");
+        console.log(user);
+        res.json(user);
+      })
+      .catch((err: Error) => {
+        console.error(err);
       });
   },
 );
