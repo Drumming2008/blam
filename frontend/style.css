@@ -2,7 +2,10 @@
 
 :root {
   --bg: #121214;
+  --bg-light: #36363b;
   --accent: greenyellow;
+  --error: crimson;
+  --border: gray;
 }
 
 * {
@@ -110,7 +113,7 @@ table {
 }
 
 tr {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--border);
 }
 
 thead > tr {
@@ -135,7 +138,7 @@ th {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: var(--bg);
   font-family: "Limelight", sans-serif;
   margin: 0 auto;
 }
@@ -183,7 +186,7 @@ th {
 }
 
 .status.dead {
-  border: 1px solid crimson;
+  border: 1px solid var(--error);
 }
 
 .status.dead::after {
@@ -206,7 +209,7 @@ th {
 }
 
 .button:hover {
-  color: black;
+  color: var(--bg);
 }
 
 .button:active {
@@ -237,7 +240,7 @@ input {
   font-size: inherit;
   height: 40px;
   padding: 10px;
-  background: #36363b;
+  background: var(--bg-light);
 }
 
 form {
@@ -261,7 +264,7 @@ form > label > span {
 
 form > label > input {
   width: 100%;
-  background: #36363b;
+  background: var(--bg-light);
   height: 40px;
   padding: 0 10px;
   font-family: inherit;
@@ -270,7 +273,7 @@ form > label > input {
 
 form > label:has([required]) > span::after {
   content: "*";
-  color: crimson;
+  color: var(--error);
   margin-left: 5px;
 }
 
@@ -283,7 +286,7 @@ form > label:has([required]) > span::after {
 
 #form-error {
   flex-grow: 1;
-  color: tomato;
+  color: var(--error);
   font-size: 0.9em;
 }
 
@@ -299,7 +302,7 @@ form > label:has([required]) > span::after {
 button, #submit,
 .accept,
 .reject {
-  background: #36363b;
+  background: var(--bg-light);
   height: 40px;
   cursor: pointer;
   transition:
@@ -336,7 +339,7 @@ button:active, #submit:active,
     border 0.1s ease,
     padding 0.1s ease,
     opacity 0.2s linear;
-  background: #36363b;
+  background: var(--bg-light);
   border: 2px solid white;
   margin: 0 -2px;
   padding: 10px;
@@ -355,7 +358,7 @@ button:active, #submit:active,
 
 .autocomplete-menu-item:hover {
   background: var(--accent);
-  color: black;
+  color: var(--bg);
 }
 
 .autocomplete-menu.hidden {
@@ -379,8 +382,8 @@ button:active, #submit:active,
 }
 
 .reject {
-  border: 1px solid crimson;
-  color: crimson;
+  border: 1px solid var(--error);
+  color: var(--error);
 }
 
 #requests-section {
@@ -398,7 +401,7 @@ button:active, #submit:active,
   gap: 10px;
   align-items: center;
   padding: 10px 0;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--border);
 }
 
 #requests > li > button {
@@ -444,9 +447,9 @@ button:active, #submit:active,
 }
 
 .remove-btn {
-  color: crimson;
+  color: var(--error);
   background: transparent;
-  border: 1px solid crimson;
+  border: 1px solid var(--error);
 }
 
 #add-btn {
