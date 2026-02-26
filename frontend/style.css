@@ -183,26 +183,30 @@ th {
   content: "Dead";
 }
 
-#report {
+.buttons {
   position: fixed;
   z-index: 100;
   top: 0;
   right: 25px;
   padding: 10px;
   text-decoration: none;
+}
+
+.button {
+  padding: 10px;
   cursor: pointer;
   transition: color 0.1s linear;
 }
 
-#report:hover {
+.button:hover {
   color: black;
 }
 
-#report:active {
+.button:active {
   color: inherit;
 }
 
-#report::after {
+.button:after {
   content: "";
   position: absolute;
   inset: 0;
@@ -213,11 +217,11 @@ th {
   transition: all 0.2s ease;
 }
 
-#report:hover::after {
+.button:hover::after {
   height: 100%;
 }
 
-#report:active::after {
+.button:active::after {
   height: 2px;
   bottom: calc(100% - 2px);
 }
