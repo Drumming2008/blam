@@ -265,19 +265,32 @@ form > label:has([required]) > span::after {
 }
 
 #submit {
+<<<<<<< HEAD
   background: #36363b;
   height: 40px;
   width: 50%;
   max-width: 300px;
-  transition: filter 0.2s linear, outline 0.1s ease;
-  font-family: inherit;
+=======
+  margin-left: auto;
+  max-width: 300px;
+  width: 50%;
 }
 
-#submit:hover {
+#submit, #buttons > button, .accept, .reject {
+  background: #36363b;
+  height: 40px;
+  cursor: pointer;
+>>>>>>> e11c577 (dashboard 1.0)
+  transition: filter 0.2s linear, outline 0.1s ease;
+  font-family: inherit;
+  padding: 0 10px;
+}
+
+#submit:hover, #buttons > button:hover, .accept:hover, .reject:hover {
   filter: brightness(1.25);
 }
 
-#submit:active {
+#submit:active, #buttons > button:active, .accept:active, .reject:active {
   filter: brightness(0.95);
 }
 
@@ -315,4 +328,44 @@ form > label:has([required]) > span::after {
   clip-path: inset(0 0 100% 0);
   border: 0 solid white;
   padding: 12px;
+}
+
+#buttons {
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+.accept {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  margin-left: auto;
+}
+
+.reject {
+  border: 1px solid crimson;
+  color: crimson;
+}
+
+#requests-section {
+  width: 75%;
+}
+
+#requests {
+  width: 100%;
+  list-style: none;
+}
+
+#requests > li {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid gray;
+}
+
+#requests > li > button {
+  height: max-content
 }
