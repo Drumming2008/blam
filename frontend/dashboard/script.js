@@ -1,15 +1,15 @@
 let apiPassword = null;
-
+let users = null;
 async function loadUsers() {
   const res = await fetch("https://blam.rkmr.dev/api/users/", {
     headers: { "api-auth": apiPassword },
   });
-  const users = await res.json();
+  users = await res.json();
   console.log(users);
   document.getElementById("users-table-body").innerHTML = "";
   for (let u of users) {
     let tr = document.createElement("tr");
-    tr.innerHTML = `<td>${u.name}</td><td>${u.target}</td>`;
+    tr.innerHTML = `<td>${u.name}</td><td>${getUserById(u.target)}</td>`;
     document.getElementById("users-table-body").append(tr);
   }
 }
@@ -22,13 +22,16 @@ async function loadReports() {
   document.getElementById("requests").innerHTML = "";
   for (let r of reports) {
     let li = document.createElement("li");
-    li.innerHTML = `${r.user} eliminated ${r.target}
+    li.innerHTML = `${getUserById(r.name)} eliminated ${getUserById(r.target)}
         <button class="accept">Accept</button>
         <button class="reject">Reject</button>`;
     document.getElementById("requests").append(li);
   }
 }
-
+function getUserById(id) {
+  const name = users?.find((u) => u._id === id)?.name;
+  return name;
+}
 async function randomize() {
   await fetch("https://blam.rkmr.dev/api/assign-targets/", {
     method: "POST",
