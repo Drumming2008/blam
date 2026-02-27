@@ -16,7 +16,7 @@ async function loadUsers() {
     tr.innerHTML = `
       <td>${u.name}</td>
       <td>${getUserById(u.target) ?? "—"}</td>
-      <td>${u.email}</td>
+      <td>${u.email.split("@")[0]}<wbr>@${u.email.split("@")[1]}</td>
       <td><div class="status ${u.alive ? "alive" : "dead"}"></div></td>
       <td><button class="remove-btn" onclick="removeUser('${u._id}')">Remove</button></td>
     `
