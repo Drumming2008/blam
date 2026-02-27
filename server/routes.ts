@@ -152,8 +152,8 @@ router.post(
     ReportSchema.findByIdAndUpdate(req.body.id, { active: false })
       .then((report: Report | null) => {
         if (!report) {
-          console.log("cooked (report does not exist)")
-          return
+          console.log("cooked (report does not exist)");
+          return;
         }
         console.log(report);
         res.json(report);
@@ -186,6 +186,32 @@ router.post(
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
     res.status(200).json({ message: "OK" });
+  },
+);
+
+router.post(
+  "/toggle-status/:id",
+  requireAdmin,
+  (req: Express.Request, res: Express.Response) => {
+    UserSchema.findByIdAndUpdate(
+      req.params.id,
+      { alive: true },
+      {
+        returnDocument: "after",
+      },
+    )
+      .then((user: User | null) => {
+        if (!user) {
+          return res.status(404).json({ message: "user not found" });
+        }
+        console.log("Successfully updated!");
+        console.log(user);
+        res.json(user);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+        res.status(500).json({ message: "user updating document" });
+      });
   },
 );
 
