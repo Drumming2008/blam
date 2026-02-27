@@ -284,6 +284,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  margin-bottom: 50px;
 }
 
 form > label {
@@ -325,10 +326,6 @@ form > label:has([required]) > span::after {
 #submit {
   width: 50%;
   max-width: 300px;
-}
-
-#submit {
-  margin-bottom: 50px;
 }
 
 button, #dashboard-link {
