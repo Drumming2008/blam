@@ -151,17 +151,17 @@ th {
 .rank.bronze { background: #cd7f32; }
 
 .status {
-  height: 1.25em;
+  height: max-content;
   width: 50%;
-  border-radius: 5px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: max-content;
 }
 
 .status.alive {
-  border: 1px solid var(--accent);
+  color: var(--accent);
 }
 
 .status.alive::after {
@@ -169,7 +169,7 @@ th {
 }
 
 .status.dead {
-  border: 1px solid var(--error);
+  color: var(--error);
 }
 
 .status.dead::after {
