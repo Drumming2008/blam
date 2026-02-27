@@ -190,7 +190,7 @@ th {
   position: fixed;
   z-index: 100;
   top: 0;
-  right: 25px;
+  right: 0;
   padding: 10px;
   padding-top: 0;
   display: flex;
@@ -331,11 +331,11 @@ form > label:has([required]) > span::after {
   margin-bottom: 50px;
 }
 
-button {
+button, #dashboard-link {
   background: var(--bg-light);
   height: 40px;
   cursor: pointer;
-  transition:  0.2s linear, outline 0.1s ease;
+  transition: all 0.2s linear, outline 0.1s ease;
   font-family: inherit;
   padding: 0 10px;
 }
@@ -344,7 +344,7 @@ button {
   background: transparent;
 }
 
-button:not(.autocomplete-menu > button):hover, #submit:hover,
+button:not(.autocomplete-menu > button):hover, #submit:hover, #dashboard-link:hover,
 .accept:hover,
 .reject:hover {
   filter: brightness(1.25);
@@ -352,7 +352,7 @@ button:not(.autocomplete-menu > button):hover, #submit:hover,
 
 button:active, #submit:active,
 .accept:active,
-.reject:active {
+.reject:active, #dashboard-link:active {
   filter: brightness(0.75);
 }
 
@@ -533,4 +533,36 @@ button:active, #submit:active,
 
 #add-error:empty {
   margin-bottom: -10px;
+}
+
+#dashboard-link {
+  text-decoration: none;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  aspect-ratio: 1;
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+#dashboard-link:hover {
+  border-radius: 0;
+}
+
+#dashboard-link > span {
+  display: inline-block;
+  width: 0;
+  margin-left: -10px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+#dashboard-link:hover > span {
+  padding-left: 0;
+  margin-left: 0;
+  width: 8ch;
 }
