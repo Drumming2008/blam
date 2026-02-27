@@ -12,13 +12,16 @@ export async function assignTargets(): Promise<void> {
     ),
   );
 }
-
 export async function blammo(user: string): Promise<void> {
   const fullUser = await UserSchema.findById(user);
   const targetUser = await UserSchema.findById(fullUser?.target?.toString());
+  if (!fullUser || !targetUser) {
+    return;
+  }
   await UserSchema.findByIdAndUpdate(targetUser?._id, { alive: false });
   await UserSchema.findByIdAndUpdate(user, {
-    target: targetUser?.target?.toString(),
+    target: targetUser.target,
+    weekScore: fullUser.weekScore + 1,
   });
   console.log(targetUser);
 }

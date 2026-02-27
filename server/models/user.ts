@@ -27,8 +27,13 @@ const userSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  weekScore: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
 });
 
-export type User = InferSchemaType<typeof userSchema>
+export type User = InferSchemaType<typeof userSchema>;
 
 export const UserSchema = mongoose.model("User", userSchema);
