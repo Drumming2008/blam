@@ -7,6 +7,7 @@
   --error: crimson;
   --border: #55555a;
   --white: #e8e8e8;
+  --gray: #a2a2aa;
 }
 
 * {
@@ -423,6 +424,16 @@ button:active, #submit:active,
 #requests-section {
   margin-top: 25px;
   width: 75%;
+}
+
+#no-requests {
+  display: none;
+  color: var(--gray);
+  margin-top: 10px;
+}
+
+#requests-section:has(#requests:empty) > #no-requests {
+  display: inline-block;
 }
 
 #requests {
