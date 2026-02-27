@@ -313,7 +313,7 @@ form > label:has([required]) > span::after {
 .form-footer {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  gap: 25px;
   align-items: center;
 }
 
@@ -339,6 +339,10 @@ button, #dashboard-link {
 
 .accept, .reject {
   background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 5px;
 }
 
 button:not(.autocomplete-menu > button):hover, #submit:hover, #dashboard-link:hover,
@@ -479,12 +483,28 @@ button:active, #submit:active,
   width: 100%;
 }
 
-.remove-btn {
-  color: var(--error);
+.remove-btn, .revive-btn {
+  color: var(--color);
   background: transparent;
-  border: 1px solid var(--error);
+  border: 1px solid var(--color);
   height: max-content;
   margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-right: 5px;
+}
+
+.revive-btn {
+  --color: var(--accent)
+}
+
+.remove-btn {
+  --color: var(--error)
+}
+
+.remove-btn > i, .revive-btn > i {
+  transform: translateY(0.5px);
 }
 
 #add-btn {

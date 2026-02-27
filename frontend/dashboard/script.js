@@ -18,7 +18,8 @@ async function loadUsers() {
       <td>${getUserById(u.target) ?? "—"}</td>
       <td>${u.email.split("@")[0]}<wbr>@${u.email.split("@")[1]}</td>
       <td><div class="status ${u.alive ? "alive" : "dead"}"></div></td>
-      <td><button class="remove-btn" onclick="removeUser('${u._id}')">Remove</button></td>
+      <td><button class="remove-btn" onclick="removeUser('${u._id}')">Remove<i class="ph ph-backspace"></i></button></td>
+      <td><button class="revive-btn" onclick="reviveUser('${u._id}')">Revive<i class="ph ph-pulse"></i></button></td>
     `
     document.getElementById("users-table-body").append(tr)
   }
@@ -39,8 +40,8 @@ async function loadReports() {
     if (!r.active) continue
     let li = document.createElement("li")
     li.innerHTML = `${getUserById(r.user)} eliminated ${getUserById(r.target)}
-      <button class="accept" onclick="blammoUser('${r.user}', '${r._id}')">Accept</button>
-      <button class="reject" onclick="completeReport('${r._id}')">Reject</button>`
+      <button class="accept" onclick="blammoUser('${r.user}', '${r._id}')">Accept<i class="ph ph-check"></i></button>
+      <button class="reject" onclick="completeReport('${r._id}')">Reject<i class="ph ph-x"></i></button>`
     document.getElementById("requests").append(li)
   }
 }
