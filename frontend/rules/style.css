@@ -1,0 +1,24 @@
+h2 {
+  color: var(--accent);
+  margin: 25px 0;
+}
+
+ul {
+  width: 75%;
+}
+
+li {
+  line-height: 1.65;
+}
+
+li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+ul:last-of-type {
+  padding-bottom: 50px;
+}
+
+li > ol {
+  margin-left: 50px;
+}

@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Limelight&display=swap");
 
 :root {
-  --bg: #121214;
+  --bg: #171719;
   --bg-light: #36363b;
   --accent: greenyellow;
   --error: crimson;
   --border: gray;
+  --white: #e8e8e8;
 }
 
 * {
@@ -31,7 +32,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid white;
+  outline: 2px solid var(--white);
 }
 
 html,
@@ -41,7 +42,7 @@ body {
 
 body {
   background: var(--bg);
-  color: white;
+  color: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,6 +53,10 @@ body {
 h1 {
   font-family: "Limelight", sans-serif;
   font-size: 2.5em;
+}
+
+i.ph {
+  font-size: 1.25em;
 }
 
 @keyframes header-gap {
@@ -177,29 +182,45 @@ th {
 }
 
 .buttons {
+  background: var(--bg);
   position: fixed;
   z-index: 100;
   top: 0;
   right: 25px;
   padding: 10px;
-  text-decoration: none;
+  padding-top: 0;
+  display: flex;
+  gap: 10px;
 }
 
 .button {
   padding: 10px;
   cursor: pointer;
   transition: color 0.1s linear;
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
-.button:hover {
+.button > i {
+  transition: color 0.1s linear;
+}
+
+.button:focus-visible {
+  outline: none;
+}
+
+.button:is(:hover, :active, :focus-visible) {
   color: var(--bg);
 }
 
-.button:active {
-  color: inherit;
+.button:not(:hover, :active, :focus-visible) > i {
+  color: var(--accent);
 }
 
-.button:after {
+.button::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -210,13 +231,12 @@ th {
   transition: all 0.2s ease;
 }
 
-.button:hover::after {
+.button:is(:hover, :active, :focus-visible)::after {
   height: 100%;
 }
 
 .button:active::after {
-  height: 2px;
-  bottom: calc(100% - 2px);
+  filter: brightness(0.75);
 }
 
 input {
@@ -286,9 +306,7 @@ button {
   background: var(--bg-light);
   height: 40px;
   cursor: pointer;
-  transition:
-    filter 0.2s linear,
-    outline 0.1s ease;
+  transition:  0.2s linear, outline 0.1s ease;
   font-family: inherit;
   padding: 0 10px;
 }
@@ -297,7 +315,7 @@ button {
   background: transparent;
 }
 
-button:hover, #submit:hover,
+button:not(.autocomplete-menu > button):hover, #submit:hover,
 .accept:hover,
 .reject:hover {
   filter: brightness(1.25);
@@ -306,7 +324,7 @@ button:hover, #submit:hover,
 button:active, #submit:active,
 .accept:active,
 .reject:active {
-  filter: brightness(0.95);
+  filter: brightness(0.75);
 }
 
 .autocomplete-menu {
@@ -321,7 +339,7 @@ button:active, #submit:active,
     padding 0.1s ease,
     opacity 0.2s linear;
   background: var(--bg-light);
-  border: 2px solid white;
+  border: 2px solid var(--white);
   margin: 0 -2px;
   padding: 10px;
   clip-path: inset(0 0 0 0);
@@ -330,11 +348,16 @@ button:active, #submit:active,
 
 .autocomplete-menu-item {
   height: 25px;
-  width: 100%;
+  width: calc(100% + 20px);
   text-align: left;
-  padding: 5px;
+  padding: 5px 15px;
+  margin: 0 -10px;
   display: flex;
   align-items: center;
+}
+
+.autocomplete-menu-item:not(:active) {
+  transition: none;
 }
 
 .autocomplete-menu-item:hover {
@@ -345,7 +368,7 @@ button:active, #submit:active,
 .autocomplete-menu.hidden {
   opacity: 0;
   clip-path: inset(0 0 100% 0);
-  border: 0 solid white;
+  border: 0 solid var(--white);
   padding: 12px;
 }
 
