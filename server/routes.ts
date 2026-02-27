@@ -190,12 +190,38 @@ router.post(
 );
 
 router.post(
-  "/toggle-status/:id",
+  "/revive/:id",
   requireAdmin,
   (req: Express.Request, res: Express.Response) => {
     UserSchema.findByIdAndUpdate(
       req.params.id,
-      { alive: true },
+      { alive: "true" },
+      {
+        returnDocument: "after",
+      },
+    )
+      .then((user: User | null) => {
+        if (!user) {
+          return res.status(404).json({ message: "user not found" });
+        }
+        console.log("Successfully updated!");
+        console.log(user);
+        res.json(user);
+      })
+      .catch((err: Error) => {
+        console.error(err);
+        res.status(500).json({ message: "user updating document" });
+      });
+  },
+);
+
+router.post(
+  "/eliminate/:id",
+  requireAdmin,
+  (req: Express.Request, res: Express.Response) => {
+    UserSchema.findByIdAndUpdate(
+      req.params.id,
+      { alive: "false" },
       {
         returnDocument: "after",
       },
