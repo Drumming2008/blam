@@ -122,7 +122,7 @@ thead > tr {
 
 td,
 th {
-  padding: 5px;
+  padding: 5px 10px;
   text-align: center;
 }
 
@@ -452,4 +452,22 @@ button:active, #submit:active,
 #add-user-form > div {
   display: flex;
   gap: 10px;
+}
+
+#users-table-body > tr > td {
+  position: relative;
+}
+
+#users-table-body > tr > td:not(:last-child) {
+  padding-right: 11px; /* to account for the border */
+}
+
+#users-table-body > tr > td:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  right: 0;
+  top: 5px;
+  bottom: 5px;
+  background: var(--border);
 }
