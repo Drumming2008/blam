@@ -239,15 +239,24 @@ th {
   filter: brightness(0.75);
 }
 
-input {
+input, textarea {
   font-size: inherit;
   height: 40px;
   padding: 10px;
   background: var(--bg-light);
 }
 
+textarea {
+  min-height: 80px;
+}
+
 ::placeholder {
   color: #9b9ba6;
+}
+
+::selection {
+  color: var(--bg);
+  background: var(--accent);
 }
 
 form {
@@ -269,13 +278,10 @@ form > label > span {
   width: 100%;
 }
 
-form > label > input {
+form > label > input, form > label > textarea {
   width: 100%;
-  background: var(--bg-light);
-  height: 40px;
-  padding: 0 10px;
-  font-family: inherit;
   transition: outline 0.1s ease;
+  resize: vertical;
 }
 
 form > label:has([required]) > span::after {
@@ -300,6 +306,10 @@ form > label:has([required]) > span::after {
 #submit {
   width: 50%;
   max-width: 300px;
+}
+
+#submit {
+  margin-bottom: 50px;
 }
 
 button {
@@ -426,7 +436,7 @@ button:active, #submit:active,
 }
 
 #auth-error {
-  color: red;
+  color: var(--error);
   display: none;
 }
 
