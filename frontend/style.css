@@ -5,7 +5,7 @@
   --bg-light: #36363b;
   --accent: greenyellow;
   --error: crimson;
-  --border: gray;
+  --border: #55555a;
   --white: #e8e8e8;
 }
 
@@ -565,4 +565,27 @@ button:active, #submit:active,
   padding-left: 0;
   margin-left: 0;
   width: 8ch;
+}
+
+#rotate-phone {
+  position: fixed;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  color: var(--accent);
+  z-index: 1000;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 50px;
+}
+
+@media (max-width: 550px) {
+  #rotate-phone {
+    display: flex;
+  }
 }
