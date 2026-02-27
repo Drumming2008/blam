@@ -250,24 +250,10 @@ textarea {
   min-height: 80px;
 }
 
-input[type="file"] {
-  appearance: none;
-  margin: 0 auto;
-  height: 75px;
-  width: max-content;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 #fake-file-input {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-light);
-  pointer-events: none;
+  height: 75px;
+  min-width: max-content;
+  width: 50%;
 }
 
 #fake-file-input > i {
@@ -533,4 +519,8 @@ button:active, #submit:active,
   top: 5px;
   bottom: 5px;
   background: var(--border);
+}
+
+#add-error:empty {
+  margin-bottom: -10px;
 }

@@ -21,7 +21,6 @@ async function loadUsers() {
       <td><button class="remove-btn" onclick="removeUser('${u._id}')">Remove</button></td>
     `
     document.getElementById("users-table-body").append(tr)
-    setFakeFileInputPosition()
   }
 
   resolve()
@@ -158,20 +157,10 @@ passwordInput.addEventListener("keydown", (e) => {
 
 if (apiPassword) attemptLogin(apiPassword) // from localStorage
 
-function setFakeFileInputPosition() {
-  let rect = document.getElementById("csv").getBoundingClientRect()
-  let fake = document.getElementById("fake-file-input")
-  fake.style.top = rect.top + "px"
-  fake.style.left = rect.left + "px"
-  fake.style.width = rect.width + "px"
-  fake.style.height = rect.height + "px"
-}
-
 onload = () => {
   document.getElementById("password-input").focus()
-  setFakeFileInputPosition()
 }
 
-onresize = () => {
-  setFakeFileInputPosition()
+document.getElementById("fake-file-input").onclick = () => {
+  document.getElementById("csv").click()
 }
