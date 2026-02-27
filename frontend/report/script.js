@@ -1,3 +1,16 @@
+id("form-submitted").style.display = "none"
+
+function popup() {
+  id("form-submitted").style.display = ""
+  setTimeout(() => {
+    id("form-submitted").classList.add("shown")
+  }, 1)
+
+  setTimeout(() => {
+    location = "../"
+  }, 1200)
+}
+
 let names = [], nameToUserId = new Map()
 
 async function loadNames() {
@@ -98,6 +111,14 @@ function onNamesLoaded() {
 
     id("form-error").innerText = ""
 
+    for (let elem of id("form").querySelectorAll("input, textarea")) {
+      elem.disabled = true
+    }
+
+    id("submit").disabled = true
+
+    id("submit").innerHTML = "<i class='ph ph-circle-notch loader'></i>"
+
     fetch(`${API_URL}/reports/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -106,6 +127,12 @@ function onNamesLoaded() {
         target: nameToUserId.get(target.toLowerCase()),
         method: method
       })
+    }).then(r => {
+      if (r.ok) {
+        popup()
+      } else {
+        id("form-error").innerText = "Error submitting form"
+      }
     })
   }
 }

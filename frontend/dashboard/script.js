@@ -38,8 +38,8 @@ async function loadReports() {
   for (let r of reports) {
     if (!r.active) continue
     let li = document.createElement("li")
-    li.innerHTML = `${getUserById(r.name)} eliminated ${getUserById(r.target)}
-      <button class="accept" onclick="blammoUser('${r.name}', '${r._id}')">Accept</button>
+    li.innerHTML = `${getUserById(r.user)} eliminated ${getUserById(r.target)}
+      <button class="accept" onclick="blammoUser('${r.user}', '${r._id}')">Accept</button>
       <button class="reject" onclick="completeReport('${r._id}')">Reject</button>`
     document.getElementById("requests").append(li)
   }

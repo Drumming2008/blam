@@ -427,6 +427,7 @@ button:active, #submit:active,
 #requests {
   width: 100%;
   list-style: none;
+  margin-bottom: 50px;
 }
 
 #requests > li {
@@ -588,4 +589,44 @@ button:active, #submit:active,
   #rotate-phone {
     display: flex;
   }
+}
+
+[disabled] {
+  opacity: 0.75;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+#form-submitted {
+  position: fixed;
+  inset: 100px;
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 2em;
+  font-weight: bold;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.5s ease;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+#form-submitted.shown {
+  transform: scale(1);
+  opacity: 1;
 }
