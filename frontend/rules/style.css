@@ -20,5 +20,7 @@ ul:last-of-type {
 }
 
 li > ol {
-  margin-left: 50px;
+  padding-left: 25px;
+  list-style: none;
+  border-left: 1px solid var(--border);
 }
