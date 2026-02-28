@@ -455,6 +455,10 @@ button:active, #submit:active,
   font-size: 1.25rem;
 }
 
+#reload-blam-requests.spinning {
+  animation: spin 1s linear infinite;
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -495,6 +499,10 @@ button:active, #submit:active,
   display: flex;
   gap: 5px;
   align-items: center;
+  justify-content: center;
+  min-width: max-content;
+  width: 50%;
+  max-width: 300px;
 }
 
 #auth {
@@ -702,6 +710,10 @@ button:active, #submit:active,
   align-items: center;
   justify-content: center;
   gap: 5px;
+  min-width: max-content;
+  width: 50%;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 hr {

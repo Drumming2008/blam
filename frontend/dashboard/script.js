@@ -44,6 +44,18 @@ async function loadReports() {
       <button class="reject" onclick="completeReport('${r._id}')">Reject<i class="ph ph-x"></i></button>`
     document.getElementById("requests").append(li)
   }
+
+  while (true) {
+    if (Date.now() % 1000 == 0) {
+      id("reload-blam-requests").classList.remove("spinning")
+      break
+    }
+  }
+}
+
+id("reload-blam-requests").onclick = () => {
+  id("reload-blam-requests").classList.add("spinning")
+  loadReports()
 }
 
 function getUserById(id) {
