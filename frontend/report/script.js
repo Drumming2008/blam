@@ -50,7 +50,7 @@ function onNamesLoaded() {
     addEventListener("resize", () => {
       let box = i.getBoundingClientRect()
       menu.style.left = box.left + "px"
-      menu.style.top = box.bottom + document.documentElement.scrollTop + "px"
+      menu.style.top = box.bottom + document.documentElement.scrollTop - 5 + "px"
       menu.style.width = box.width + 4 + "px"
     })
 
@@ -63,7 +63,7 @@ function onNamesLoaded() {
     i.onfocus = () => {
       let box = i.getBoundingClientRect()
       menu.style.left = box.left + "px"
-      menu.style.top = box.bottom + document.documentElement.scrollTop + "px"
+      menu.style.top = box.bottom + document.documentElement.scrollTop - 5 + "px"
       menu.style.width = box.width + 4 + "px"
       menu.style.display = ""
 

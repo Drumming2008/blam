@@ -256,27 +256,16 @@ textarea {
   min-height: 80px;
 }
 
-#fake-file-input {
-  height: 75px;
-  min-width: max-content;
-  width: 50%;
-}
-
-#fake-file-input > i {
-  font-size: 2em;
-}
-
 ::-webkit-file-upload-button {
   display: none;  
 }
 
 ::placeholder {
-  color: #9b9ba6;
+  color: var(--gray);
 }
 
 ::selection {
-  color: var(--bg);
-  background: var(--accent);
+  background: color-mix(in srgb, var(--accent), transparent);
 }
 
 form {
@@ -371,10 +360,24 @@ button:active, #submit:active,
     opacity 0.2s linear;
   background: var(--bg-light);
   border: 2px solid var(--white);
+  border-top: none;
   margin: 0 -2px;
   padding: 10px;
+  padding-top: 15px;
   clip-path: inset(0 0 0 0);
   z-index: 10;
+  border-radius: 0 0 5px 5px;
+}
+
+.autocomplete-menu::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--white);
+  transition: height 0.1s ease;
 }
 
 .autocomplete-menu-item {
@@ -385,6 +388,7 @@ button:active, #submit:active,
   margin: 0 -10px;
   display: flex;
   align-items: center;
+  border-radius: 0;
 }
 
 .autocomplete-menu-item:not(:active) {
@@ -401,6 +405,10 @@ button:active, #submit:active,
   clip-path: inset(0 0 100% 0);
   border: 0 solid var(--white);
   padding: 12px;
+}
+
+.autocomplete-menu.hidden::after {
+  height: 0;
 }
 
 #buttons {
@@ -432,8 +440,36 @@ button:active, #submit:active,
   margin-top: 10px;
 }
 
+#blam-h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#reload-blam-requests {
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+#reload-blam-requests > i {
+  font-size: 1.25rem;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 #requests-section:has(#requests:empty) > #no-requests {
   display: inline-block;
+  animation: fade-up 1s ease forwards;
 }
 
 #requests {
@@ -453,6 +489,12 @@ button:active, #submit:active,
 
 #requests > li > button {
   height: max-content;
+}
+
+#randomize {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 #auth {
@@ -575,22 +617,18 @@ button:active, #submit:active,
   align-items: center;
   justify-content: center;
   padding: 10px;
-  gap: 10px;
-}
-
-#dashboard-link:hover {
-  border-radius: 0;
+  gap: 5px;
 }
 
 #dashboard-link > span {
   display: inline-block;
   width: 0;
-  margin-left: -10px;
+  margin-left: -5px;
   transition: all 0.2s ease;
   overflow: hidden;
 }
 
-#dashboard-link:hover > span {
+#dashboard-link:is(:hover, :focus-visible) > span {
   padding-left: 0;
   margin-left: 0;
   width: 8ch;
@@ -657,4 +695,20 @@ button:active, #submit:active,
 #form-submitted.shown {
   transform: scale(1);
   opacity: 1;
+}
+
+#fake-file-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+hr {
+  height: 1px;
+  background: var(--border);
+}
+
+button, input, textarea, #dashboard-link {
+  border-radius: 5px;
 }

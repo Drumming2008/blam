@@ -29,7 +29,7 @@
         <div id="main-content">
             <section id="buttons">
                 <button id="randomize" onclick="randomize()">
-                    Randomize Targets
+                    <i class="ph ph-shuffle"></i>Randomize Targets
                 </button>
             </section>
             <section id="users">
@@ -56,14 +56,14 @@
                     <button onclick="addUser()" id="add-btn">Add</button>
                 </div>
                 <span id="add-error"></span>
-                <h3>Import CSV</h3>
                 <input type="file" id="csv" accept=".csv" style="display: none;">
+                <hr>
                 <button id="fake-file-input">
-                    <i class="ph ph-file-csv"></i>
+                    <i class="ph ph-file-csv"></i>Import CSV
                 </button>
             </section>
             <section id="requests-section">
-                <h2>Blam Requests</h2>
+                <h2 id="blam-h2">Blam Requests <button id="reload-blam-requests"><i class="ph ph-arrow-clockwise"></i></button></h2>
                 <span id="no-requests">There are no Blam Requests right now</span>
                 <ul id="requests"></ul>
             </section>

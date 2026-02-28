@@ -39,7 +39,7 @@ async function loadReports() {
   for (let r of reports) {
     if (!r.active) continue
     let li = document.createElement("li")
-    li.innerHTML = `${getUserById(r.user)} eliminated ${getUserById(r.target)}
+    li.innerHTML = `<span>${getUserById(r.user)} <span style="color: var(--gray);">eliminated</span> ${getUserById(r.target)}</span>
       <button class="accept" onclick="blammoUser('${r.user}', '${r._id}')">Accept<i class="ph ph-check"></i></button>
       <button class="reject" onclick="completeReport('${r._id}')">Reject<i class="ph ph-x"></i></button>`
     document.getElementById("requests").append(li)
